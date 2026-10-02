@@ -1,0 +1,27 @@
+{
+  "name": "partytube",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-ready PartyTube real-time synchronized playback platform",
+  "scripts": {
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build:client": "npm --prefix client run build",
+    "build:server": "npm --prefix server run build",
+    "build": "npm --prefix client run build && npm --prefix server run build",
+    "start": "node server/dist/index.js",
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "postinstall": "npm run install:all"
+  },
+  "keywords": [
+    "watch-party",
+    "youtube-sync",
+    "websockets",
+    "socket.io",
+    "react",
+    "express",
+    "sqlite"
+  ],
+  "author": "",
+  "license": "MIT"
+}

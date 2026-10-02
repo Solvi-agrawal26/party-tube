@@ -1,0 +1,12 @@
+node_modules
+client/node_modules
+server/node_modules
+client/dist
+server/dist
+watch_party.db
+watch_party.db-journal
+.env
+server/.env
+.git
+.agents
+*.log

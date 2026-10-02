@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Production build outputs
+client/dist/
+server/dist/
+
+# Local database and journals
+watch_party.db
+watch_party.db-journal
+*.sqlite
+
+# Environment variables
+.env
+.env.local
+
+# Logs and system artifacts
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db

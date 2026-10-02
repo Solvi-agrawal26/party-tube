@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: party-tube
+    env: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: CLIENT_ORIGIN
+        value: "*"
+      - key: DB_PATH
+        value: ./watch_party.db
+      - key: DEFAULT_VIDEO_ID
+        value: jfKfPfyJRdk
+    # Note: Render persistent disks require a paid Starter plan ($7/mo).
+    # If upgrading to a paid plan, uncomment the disk block below and set DB_PATH to /var/data/watch_party.db:
+    # disk:
+    #   name: sqlite-data
+    #   mountPath: /var/data
+    #   sizeGB: 1
+
