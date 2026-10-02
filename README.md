@@ -6,9 +6,10 @@ A full-stack, production-ready collaborative video streaming platform that lets 
 
 ## 🌐 Live Public Deployment
 
-> **Live Demo URL:** `https://party-tube.onrender.com` *(Follow the instructions below to make this live)*
+> **Live Demo URL:** `https://party-tube.onrender.com`
 >
-> *(To deploy your own live instance in under 3 minutes, follow the [Deployment Guide](#-deployment-guide) below!)*
+> [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Solvi-agrawal26/party-tube)
+
 
 ---
 
