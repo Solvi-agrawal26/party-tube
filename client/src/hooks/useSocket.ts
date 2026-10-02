@@ -15,6 +15,8 @@ import {
   RoomDetailsPayload,
 } from '../types';
 
+const BACKEND_URL = ((import.meta as any).env?.VITE_BACKEND_URL as string) || '';
+
 export function useSocket(onToast: (toast: Omit<ToastMessage, 'id'>) => void) {
   const socketRef = useRef<Socket | null>(null);
 
@@ -55,13 +57,14 @@ export function useSocket(onToast: (toast: Omit<ToastMessage, 'id'>) => void) {
 
   // Initialize socket connection
   useEffect(() => {
-    // In dev, connect to window.location.origin (which proxies /socket.io) or localhost:4000
-    const socket = io({
+    // In dev / unified mode, connect to window.location.origin; or to VITE_BACKEND_URL if deployed on Vercel
+    const socketOptions = {
       transports: ['websocket', 'polling'],
       autoConnect: true,
       reconnectionAttempts: 10,
       reconnectionDelay: 1000,
-    });
+    };
+    const socket = BACKEND_URL ? io(BACKEND_URL, socketOptions) : io(socketOptions);
     socketRef.current = socket;
 
     socket.on('connect', () => {
@@ -273,7 +276,7 @@ export function useSocket(onToast: (toast: Omit<ToastMessage, 'id'>) => void) {
       window.history.replaceState({}, '', `?room=${cleanRoomId}`);
 
       // Fetch persistent recent messages for this room
-      fetch(`/api/rooms/${cleanRoomId}/messages`)
+      fetch(`${BACKEND_URL}/api/rooms/${cleanRoomId}/messages`)
         .then((res) => res.json())
         .then((data) => {
           if (data.messages && Array.isArray(data.messages)) {
@@ -307,7 +310,7 @@ export function useSocket(onToast: (toast: Omit<ToastMessage, 'id'>) => void) {
 
   const fetchPublicRooms = useCallback(() => {
     socketRef.current?.emit('get_public_rooms');
-    fetch('/api/rooms/public')
+    fetch(`${BACKEND_URL}/api/rooms/public`)
       .then((res) => res.json())
       .then((data) => {
         if (data.rooms) setPublicRooms(data.rooms);
